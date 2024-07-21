@@ -3,6 +3,8 @@ on:
   # When approved PR and merging, deploy to EC2
   push:
     branches: ["main"]
+    paths:
+      - "Backend/**"
 
 jobs:
   build-api:

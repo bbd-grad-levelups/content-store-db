@@ -3,6 +3,8 @@ on:
   # When making a PR, build the API
   pull_request:
     branches: [ "main" ]
+    paths:
+      - "Backend/**"
 
 jobs:
   build_api:
