@@ -43,16 +43,6 @@ variable "secret_key" {
   description = "Secret key (no looky!)"
 }
 
-variable "jc_access_key" {
-  type        = string
-  description = "Access key (no looky!)"
-}
-
-variable "jc_secret_key" {
-  type        = string
-  description = "Secret key (no looky!)"
-}
-
 variable "aws_region" {
   type        = string
   description = "Region"
