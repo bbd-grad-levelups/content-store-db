@@ -39,52 +39,68 @@ public class App {
         godzillaNode.setProperty("genre", "Action");
         godzillaNode.setProperty("runTime", 120);
         godzillaNode.setProperty("price", 55.00);
+        Map<String, Object> godzillaTrailerProps = new HashMap<>();
+        godzillaTrailerProps.put("type", "Trailer");
         File godzillaTrailerFile = new File("data/godzilla.mp4");
-        uploadFile(session, godzillaNode, "trailer", godzillaTrailerFile, "video/mp4", Collections.emptyMap());
+        uploadFile(session, godzillaNode, "trailer", godzillaTrailerFile, "video/mp4", godzillaTrailerProps);
         File godzillaPosterFile = new File("data/godzillaVsKong.jpg");
-        uploadFile(session, godzillaNode, "poster", godzillaPosterFile, "image/jpeg", Collections.emptyMap());
+        Map<String, Object> godzillaPosterProps = new HashMap<>();
+        godzillaPosterProps.put("type", "Poster");
+        uploadFile(session, godzillaNode, "poster", godzillaPosterFile, "image/jpeg", godzillaPosterProps);
 
         Node barbieNode = cinemaNode.addNode("barbie");
         barbieNode.setProperty("name", "Barbie Movie");
         barbieNode.setProperty("genre", "Comedy");
         barbieNode.setProperty("runTime", 105);
+        Map<String, Object> barbiePosterProps = new HashMap<>();
+        barbiePosterProps.put("type", "Poster");
         File barbiePosterFile = new File("data/barbie.jpg");
-        uploadFile(session, barbieNode, "poster", barbiePosterFile, "image/jpeg", Collections.emptyMap());
+        uploadFile(session, barbieNode, "poster", barbiePosterFile, "image/jpeg", barbiePosterProps);
 
         Node hitchhikerNode = cinemaNode.addNode("hitchhikers");
         hitchhikerNode.setProperty("name", "The Hitchhikers Guide to the Galaxy");
         hitchhikerNode.setProperty("genre", "Comedy");
         hitchhikerNode.setProperty("runTime", 95);
+        Map<String, Object> hitchhikerPosterProps = new HashMap<>();
+        hitchhikerPosterProps.put("type", "Poster");
         File hitchhikerPosterFile = new File("data/hitchhikers.jpg");
-        uploadFile(session, barbieNode, "poster", hitchhikerPosterFile, "image/jpeg", Collections.emptyMap());
+        uploadFile(session, hitchhikerNode, "poster", hitchhikerPosterFile, "image/jpeg", hitchhikerPosterProps);
 
         Node megNode = cinemaNode.addNode("meg");
         megNode.setProperty("name", "The Meg");
         megNode.setProperty("genre", "Action");
         megNode.setProperty("runTime", 113);
+        Map<String, Object> megPosterProps = new HashMap<>();
+        megPosterProps.put("type", "Poster");
         File megPosterFile = new File("data/meg.jpg");
-        uploadFile(session, megNode, "poster", megPosterFile, "image/jpeg", Collections.emptyMap());
+        uploadFile(session, megNode, "poster", megPosterFile, "image/jpeg", megPosterProps);
 
         Node deadpoolNode = cinemaNode.addNode("deadpool");
         deadpoolNode.setProperty("name", "Deadpool");
         deadpoolNode.setProperty("genre", "Comedy");
         deadpoolNode.setProperty("runTime", 108);
+        Map<String, Object> deadpoolPosterProps = new HashMap<>();
+        deadpoolPosterProps.put("type", "Poster");
         File deadpoolPosterFile = new File("data/deadpool.jpg");
-        uploadFile(session, deadpoolNode, "poster", deadpoolPosterFile, "image/jpeg", Collections.emptyMap());
+        uploadFile(session, deadpoolNode, "poster", deadpoolPosterFile, "image/jpeg", deadpoolPosterProps);
 
         Node loveActuallyNode = cinemaNode.addNode("loveActually");
         loveActuallyNode.setProperty("name", "Love Actually");
         loveActuallyNode.setProperty("genre", "Romance");
         loveActuallyNode.setProperty("runTime", 135);
+        Map<String, Object> loveActuallyPosterProps = new HashMap<>();
+        loveActuallyPosterProps.put("type", "Poster");
         File loveActuallyPosterFile = new File("data/loveActually.jpg");
-        uploadFile(session, loveActuallyNode, "poster", loveActuallyPosterFile, "image/jpeg", Collections.emptyMap());
+        uploadFile(session, loveActuallyNode, "poster", loveActuallyPosterFile, "image/jpeg", loveActuallyPosterProps);
 
         Node titanicNode = cinemaNode.addNode("titanic");
         titanicNode.setProperty("name", "Titanic");
         titanicNode.setProperty("genre", "Romance");
         titanicNode.setProperty("runTime", 195);
+        Map<String, Object> titanicPosterProps = new HashMap<>();
+        titanicPosterProps.put("type", "Poster");
         File titanicPosterFile = new File("data/titanic.jpg");
-        uploadFile(session, titanicNode, "poster", titanicPosterFile, "image/jpeg", Collections.emptyMap());
+        uploadFile(session, titanicNode, "poster", titanicPosterFile, "image/jpeg", titanicPosterProps);
 
         session.save();
     }
