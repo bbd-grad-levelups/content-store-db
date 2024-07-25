@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class SearchController {
+
     @GetMapping
     public ResponseEntity<String> search() {
         return new ResponseEntity<>("Hello world", HttpStatus.OK);

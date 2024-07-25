@@ -1,0 +1,8 @@
+application:
+  name: api
+  security:
+    jwt:
+      secret-key: YDLBB9hDr6aI68Ako1F5YASNuBzivU1yhb8wWowo2bWPJjfZYRdg25FqZDOXU8h2iG471udCbTiXMgbg4QZE31PHYEnfNbaZ3xEaE7Di8m9r6kyoSYkgTeE1HAe1lJn4Ur5jcJ6yhU8JophFeW4ii7yPicx29vmLTlspA1ZXFpXiUCkIIbxhlA0G1i5kbUuPeKvzUJCbenttpLaOIABTG1XlQWsOSVYq3d9uCd8skaxfzMB0fSqnAPcSJs3EyP06
+
+server:
+  port: 8080
