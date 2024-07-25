@@ -1,0 +1,50 @@
+name: Build Java API w/ CI/CD on making a PR
+on:
+  # When making a PR, build the API
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - "Backend/**"
+
+jobs:
+  build_api:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+
+
+    - name: Generate application.properties
+      run: |
+        cd ./Backend
+        mkdir -p ./src/main/resources
+        cd ./src/main/resources
+        echo "spring.config.use-legacy-processing=true" >> application.properties
+        echo "spring.datasource.url=jdbc:sqlserver://<full-db-string>" >> application.properties
+        echo "spring.datasource.username=${{ secrets.DB_USERNAME }}" >> application.properties
+        echo "spring.datasource.password=${{ secrets.DB_PASSWORD }}" >> application.properties
+        echo "spring.jpa.show-sql=true" >> application.properties
+        echo "spring.jpa.properties.hibernate.format_sql = true" >> application.properties
+        echo "spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.SQLServerDialect" >> application.properties
+        echo "spring.jpa.hibernate.naming.implicit-strategy=org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl" >> application.properties
+        echo "spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl" >> application.properties
+        echo "spring.jpa.properties.hibernate.default_schema=tdb" >> application.properties
+        echo "github.client.id=${{ secrets.CLIENT_ID }}" >> application.properties
+        echo "github.client.secret=${{ secrets.CLIENT_SECRET }}" >> application.properties
+        echo "spring.security.oauth2.client.registration.github.client-id=${{ secrets.CLIENT_ID }}" >> application.properties
+        echo "spring.security.oauth2.client.registration.github.client-secret=${{ secrets.CLIENT_SECRET }}" >> application.properties
+
+    - name: Test & package
+      run: |
+        cd Backend
+        mvn package -DskipTests
+    
+    - name: Upload image to S3
+      run: aws s3 cp site.zip s3://${{ secrets.BUCKET_NAME }}/application-${{ github.run_id }}.zip
+      working-directory: Backend/target/
