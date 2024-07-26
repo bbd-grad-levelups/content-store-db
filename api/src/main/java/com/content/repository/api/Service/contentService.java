@@ -22,10 +22,10 @@ public class contentService {
         Map<String, String> parameters = new HashMap<>();
         Session session = null;
         // parameters.put("org.apache.jackrabbit.repository.uri",
-        //         "http://63.35.177.92/server");
+        //         "http://34.244.135.117/server");
 
         parameters.put("org.apache.jackrabbit.repository.uri",
-        "http://54.75.153.225/server");
+        "http://52.17.200.208/server");
 
         // parameters.put("org.apache.jackrabbit.repository.uri",
         // "http://localhost:8080/server");
