@@ -2,7 +2,7 @@ name: Deploy Java API CI/CD on push to main
 on:
   # When approved PR and merging, deploy to EC2
   push:
-    branches: ["main", "testing_api_deploy"]
+    branches: ["main" ]
     paths:
       - "Backend/**"
 

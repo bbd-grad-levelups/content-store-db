@@ -53,8 +53,9 @@ resource "aws_key_pair" "deployer" {
   public_key = tls_private_key.ec2_key.public_key_openssh
 }
 
-resource "aws_instance" "content-store-ec2" {
+resource "aws_instance" "content-store-ec2-new" {
     ami           = "ami-0d940f23d527c3ab1"
+    
     instance_type = "t2.micro"
     key_name      = aws_key_pair.deployer.key_name
     vpc_security_group_ids = [aws_security_group.ec2_security_group.id]
@@ -69,10 +70,24 @@ resource "aws_instance" "content-store-ec2" {
         private_key = tls_private_key.ec2_key.private_key_pem
         host        = self.public_ip
     }
+    provisioner "file" {
+    source      = "../docker/docker-compose.yaml"
+    destination = "/home/ubuntu/docker-compose.yaml"
+    }
+    provisioner "file" {
+    source      = "../docker/mysql-persistence-config.sql"
+    destination = "/home/ubuntu/mysql-persistence-config.sql"
+    }
+    provisioner "file" {
+    source      = "../docker/repository-with-mysql-persistence.xml"
+    destination = "/home/ubuntu/repository-with-mysql-persistence.xml"
+    }
     provisioner "remote-exec" {
         inline = [
             "sudo apt update",
-            "sudo apt install -y docker.io"
+            "sudo apt install -y docker.io",
+            "sudo apt install -y docker-compose",
+            "sudo apt install -y git"
         ]
     }
 }
